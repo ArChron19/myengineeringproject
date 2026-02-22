@@ -1,0 +1,84 @@
+/* Sidebar - auto-hide on left, expand on hover (pure CSS) */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 70px;
+  background: #222;
+  color: white;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  z-index: 1000;
+}
+
+.sidebar:hover {
+  width: 250px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 60px 0 0 0;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar span {
+  opacity: 0;
+  margin-left: 15px;
+  transition: opacity 0.2s;
+}
+
+.sidebar:hover span {
+  opacity: 1;
+}
+
+.sidebar-toggle {
+  padding: 20px;
+  font-size: 24px;
+  cursor: default;
+  color: white;
+}
+
+/* Push main content right when sidebar expanded */
+.main-content {
+  margin-left: 70px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar:hover ~ .main-content {
+  margin-left: 250px;
+}
+
+/* Mobile: collapse sidebar, full-width content */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 0;
+    overflow: hidden;
+  }
+
+  .sidebar:hover {
+    width: 250px;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .sidebar:hover ~ .main-content {
+    margin-left: 0;
+  }
+}
