@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar.addEventListener('mouseenter', expand);
     sidebar.addEventListener('mouseleave', collapse);
 
+    // collapse when clicking outside (useful on mobile/touch)
+    document.addEventListener('click', (event) => {
+        if (
+            sidebar.classList.contains('expanded') &&
+            !sidebar.contains(event.target) &&
+            !toggle.contains(event.target)
+        ) {
+            collapse();
+        }
+    });
+
     // initialize collapsed state
     collapse();
 });

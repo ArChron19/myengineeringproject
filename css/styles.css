@@ -83,3 +83,66 @@ body {
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
+/* make all images scale within their containers */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* avoid overlapping by giving content proper stacking context */
+#content {
+    position: relative;
+    z-index: 1;
+}
+
+/* prevent sections with background images from collapsing */
+section {
+    overflow: hidden;
+}
+
+
+/* sub-footer inside sidebar */
+#sidebar .sub-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 0;
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+/* mobile adjustments */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 0;
+        transform: translateX(-100%);
+    }
+    #sidebar.expanded {
+        transform: translateX(0);
+    }
+    #toggleSidebar {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        z-index: 1100;
+    }
+    #content {
+        margin-left: 0;
+    }
+    #content.collapsed {
+        margin-left: 0;
+    }
+    /* adjust padding and font-size for narrow screens */
+    main {
+        padding: 1rem;
+    }
+    header, footer {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+
