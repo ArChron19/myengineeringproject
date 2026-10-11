@@ -46,7 +46,7 @@ keywords: classroom, teacher, instructor, school, institution, students, seats, 
 
 ## Pricing
 selectNsolve Basic is free forever with no credit card. selectNsolve Basic Plus will be $1.99 per month or $15 per year. selectNsolve Pro will be $7.99 per month or $59 per year. selectNsolve Classroom will be $179 per year, with school and non-profit discounts. Basic Plus, Pro and Classroom are coming soon and can't be purchased yet. The Developer API needs no API key.
-keywords: price, pricing, cost, how much, plans, subscription, monthly, yearly, annual, free, pay
+keywords: price, pricing, cost, how much, plans, what plans, tiers, options, subscription, monthly, yearly, annual, free, pay, plan
 
 ## Buying and launch notifications
 Basic Plus, Pro and Classroom aren't available to buy yet, so no payment is taken today. To hear when they launch, use the "Notify Me" button on the Pricing page (it opens the Support page), email support@myengineeringproject.com, or follow @myengproject.
