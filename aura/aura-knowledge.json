@@ -1,0 +1,200 @@
+{
+ "greeting": "Hi, I'm Aura, the assistant for My Engineering Project. I can tell you about selectNsolve, our plans, the Developer API, or how to reach support. What can I help with?",
+ "suggestions": [
+  "What is selectNsolve?",
+  "How much does it cost?",
+  "What does Pro add?",
+  "How do I get support?"
+ ],
+ "fallback": "Good question. I don't have that answer yet, but the team can help: email support@myengineeringproject.com or use the form on the Support page.",
+ "faqs": [
+  {
+   "q": [
+    "what is selectnsolve",
+    "selectnsolve",
+    "solver add-on",
+    "google sheets solver",
+    "what does it do"
+   ],
+   "tags": [
+    "solve",
+    "sheets",
+    "addon",
+    "add-on",
+    "equation"
+   ],
+   "a": "selectNsolve is a Google Sheets add-on for solving equations right in your spreadsheet. Basic is free and available now: single-variable solving with your own search bounds, standard operators, and Unicode variable names and units."
+  },
+  {
+   "q": [
+    "how much",
+    "pricing",
+    "price",
+    "cost",
+    "plans",
+    "which plan",
+    "basic vs pro",
+    "tiers"
+   ],
+   "tags": [
+    "price",
+    "cost",
+    "plan",
+    "free",
+    "subscription",
+    "month",
+    "year"
+   ],
+   "a": "Basic is free forever, no credit card. Pro will be $7.99 a month or $59 a year. Classroom will be $179 a year. Pro and Classroom are coming soon. Details are on the Pricing page."
+  },
+  {
+   "q": [
+    "what does pro add",
+    "selectnsolve pro",
+    "pro features",
+    "multi variable",
+    "multiple variables",
+    "systems of equations"
+   ],
+   "tags": [
+    "pro",
+    "variables",
+    "system",
+    "ai"
+   ],
+   "a": "Pro adds an AI-managed multi-variable solver: systems of up to 30 variables, with the AI tracking each variable's min, max and precision, plus early access to new features. It's coming soon at $7.99 a month or $59 a year."
+  },
+  {
+   "q": [
+    "classroom",
+    "teachers",
+    "instructors",
+    "students",
+    "school",
+    "institution"
+   ],
+   "tags": [
+    "education",
+    "class",
+    "teach",
+    "seats",
+    "dashboard"
+   ],
+   "a": "Classroom is for instructors and institutions: everything in Pro, up to 35 student seats, shared equation libraries, an instructor dashboard and an onboarding call, at $179 a year. School and non-profit discounts are available. It's coming soon."
+  },
+  {
+   "q": [
+    "how do i install",
+    "install",
+    "get started",
+    "where do i get it",
+    "platform required"
+   ],
+   "tags": [
+    "install",
+    "marketplace",
+    "workspace",
+    "google"
+   ],
+   "a": "selectNsolve runs in Google Sheets. Install selectNsolve Basic from the Google Workspace Marketplace, then open it from the Extensions menu in your sheet."
+  },
+  {
+   "q": [
+    "developer api",
+    "api",
+    "mcp",
+    "mcp server",
+    "agents",
+    "rest"
+   ],
+   "tags": [
+    "developer",
+    "api",
+    "mcp",
+    "agent",
+    "claude",
+    "integration"
+   ],
+   "a": "The Developer API is a live MCP server at myengineeringproject.com/api/mcp. AI agents can create and fill Google Sheets with selectNsolve math. No API key is needed. The API doesn't solve; the add-on does. See the Developer API page."
+  },
+  {
+   "q": [
+    "contact",
+    "support",
+    "talk to someone",
+    "email",
+    "help",
+    "report an issue",
+    "bug"
+   ],
+   "tags": [
+    "reach",
+    "human",
+    "person",
+    "problem",
+    "issue"
+   ],
+   "a": "Email support@myengineeringproject.com, or use the Send us a message form on the Support page."
+  },
+  {
+   "q": [
+    "notify me",
+    "when will pro launch",
+    "launch date",
+    "coming soon",
+    "waitlist"
+   ],
+   "tags": [
+    "launch",
+    "release",
+    "notify",
+    "when"
+   ],
+   "a": "Pro and Classroom are coming soon. To hear when they launch, email support@myengineeringproject.com or follow @myengproject."
+  },
+  {
+   "q": [
+    "study guides",
+    "exam",
+    "practical engineering",
+    "learn",
+    "skills",
+    "learn creatively"
+   ],
+   "tags": [
+    "study",
+    "guide",
+    "exam",
+    "engineering",
+    "learning"
+   ],
+   "a": "Practical Engineering covers real-world problem solving, and the Study Guides help you prepare for exams. Both are in the menu at the top of the site."
+  },
+  {
+   "q": [
+    "brazen sudoku",
+    "sudoku",
+    "game"
+   ],
+   "tags": [
+    "puzzle",
+    "play"
+   ],
+   "a": "Brazen Sudoku is our puzzle game, at brazensudoku.com."
+  },
+  {
+   "q": [
+    "who are you",
+    "what are you",
+    "are you a robot",
+    "are you ai"
+   ],
+   "tags": [
+    "aura",
+    "assistant",
+    "bot"
+   ],
+   "a": "I'm Aura, this site's virtual assistant. I answer common questions and point you to the right page."
+  }
+ ]
+}
