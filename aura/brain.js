@@ -6,7 +6,7 @@ var AuraBrain = (function () {
   const STOP = new Set(('a an the is are am was were be been to of for and or in on at do does did can could i you we your our me my it its this that these those with ' +
     'how what who where when why which have has had will would should about please tell there their them they he she his her any some just so if then than ' +
     'there get got im i\'m youre you\'re us want need know like').split(' '));
-  const SYN = { cost: 'price', costs: 'price', pricing: 'price', much: 'price', fee: 'price', fees: 'price', cheap: 'price', expensive: 'price',
+  const SYN = { cost: 'price', costs: 'price', plan: 'price', plans: 'price', tier: 'price', tiers: 'price', pricing: 'price', much: 'price', fee: 'price', fees: 'price', cheap: 'price', expensive: 'price',
     buy: 'purchase', order: 'purchase', checkout: 'purchase', subscribe: 'subscription', subscription: 'subscription', upgrade: 'pro',
     human: 'person', someone: 'person', somebody: 'person', representative: 'person', rep: 'person', agent: 'person', staff: 'person', operator: 'person',
     call: 'phone', telephone: 'phone', number: 'phone', text: 'phone', sms: 'phone', ring: 'phone',
