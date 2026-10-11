@@ -1,7 +1,8 @@
 /**
  * Aura guide for selectNsolve (Google Sheets add-on). Add this file and AuraGuide.html to the add-on project.
  * Aura appears as a floating, draggable dialog (head + live captions) and walks the user through a tour.
- * Tours live at https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/tours/<name>.json (edit there; no redeploy).
+ * Tours: edit aura/tours/<name>.json on the aura branch of ArChron19/myengineeringproject; the site serves them at
+ * https://myengineeringproject.com/aura/tours/<name>.json within about 5 minutes (no add-on redeploy).
  *
  * Wire it into your existing onOpen menu, e.g.:
  *   SpreadsheetApp.getUi().createAddonMenu()
