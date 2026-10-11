@@ -21,7 +21,7 @@
   const DS = (SCRIPT.dataset || {});
   const BASE = SCRIPT.src ? SCRIPT.src.replace(/[^/]*$/, '') : '';
   const CONF = Object.assign({
-    name: DS.name || 'Aura', knowledge: DS.knowledge || '', sources: (DS.sources || 'https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/source.md,https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/manual.md').split(',').map(x => x.trim()).filter(Boolean), endpoint: DS.endpoint || '', position: DS.position || 'right',
+    name: DS.name || 'Aura', knowledge: DS.knowledge || '', hiveUrl: DS.hiveUrl != null ? DS.hiveUrl : 'https://apdnwfmovrrvjmvwfrhk.supabase.co', hiveKey: DS.hiveKey || 'sb_publishable_S7rXC3heK1bXbyPnaveuJA_wMD5_W85', hiveWait: +(DS.hiveWait || 25), sources: (DS.sources || 'https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/source.md,https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/manual.md').split(',').map(x => x.trim()).filter(Boolean), endpoint: DS.endpoint || '', position: DS.position || 'right',
     greetAfter: DS.greetAfter != null ? +DS.greetAfter : 8, startOpen: DS.open === 'true', accent: DS.accent || '#4fb3d9'
   }, window.AURA_CONFIG || {});
 
@@ -553,6 +553,33 @@ if (false && typeof module !== 'undefined') module.exports = AuraBrain;
   }
   let BRAIN = null;
   async function brain() { if (!BRAIN) { const kb = await loadKB(); BRAIN = AuraBrain.create({ sources: CONF.sources, kb, fallback: kb.fallback, pageSearch }); } await BRAIN.load(); return BRAIN; }
+  // ---------- hive brain: a bee's local model (oci-bee-1) answers through Supabase; local answers are the fallback ----------
+  let hiveSeen = 0, hiveUp = false, SID = '';
+  try { SID = sessionStorage.getItem('aura-sid') || ''; } catch (e) {}
+  if (!SID) { SID = Array.from(crypto.getRandomValues(new Uint8Array(12)), b => b.toString(16).padStart(2, '0')).join(''); try { sessionStorage.setItem('aura-sid', SID); } catch (e) {} }
+  async function rpc(fn, body) {
+    const r = await fetch(CONF.hiveUrl.replace(/\/$/, '') + '/rest/v1/rpc/' + fn, { method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: CONF.hiveKey, Authorization: 'Bearer ' + CONF.hiveKey }, body: JSON.stringify(body || {}) });
+    if (!r.ok) throw new Error(fn + ' ' + r.status); return r.json();
+  }
+  async function hiveReady() {
+    if (!CONF.hiveUrl || !CONF.hiveKey) return false;
+    if (Date.now() - hiveSeen < 60000) return hiveUp;
+    hiveSeen = Date.now(); try { hiveUp = !!(await rpc('aura_status')).up; } catch (e) { hiveUp = false; } return hiveUp;
+  }
+  async function hiveAnswer(q, local, typing) {
+    const sections = [local.topic, ...(local.chips || [])].filter(t => t && !/^(privacy|maker|fallback)$/.test(t)).slice(0, 3);
+    const id = await rpc('aura_ask', { p_session: SID, p_question: q.slice(0, 500), p_sections: sections,
+      p_history: history.slice(-5, -1).map(h => ({ role: h.role, content: String(h.content).slice(0, 500) })), p_page: location.pathname });
+    typing.textContent = 'Thinking\u2026'; const t0 = Date.now();
+    while (Date.now() - t0 < CONF.hiveWait * 1000) {
+      await new Promise(r => setTimeout(r, 1200));
+      const p = await rpc('aura_poll', { p_id: id, p_session: SID });
+      if (p.status === 'done' && p.answer) return p.answer;
+      if (p.status === 'error' || p.status === 'missing') break;
+    }
+    return null;
+  }
   async function localAnswer(q) { const r = await (await brain()).answer(q); return r; }
 
   async function agentAnswer(q) {
@@ -577,7 +604,12 @@ if (false && typeof module !== 'undefined') module.exports = AuraBrain;
     q = (q || '').trim(); if (!q || busy) return; busy = true; chips.innerHTML = ''; add('user', q); history.push({ role: 'user', content: q }); input.value = '';
     const typing = add('ai', '\u2026'); typing.classList.add('typing'); if (E) E.interrupt && E.interrupt();
     let out;
-    try { out = CONF.endpoint ? await agentAnswer(q) : await localAnswer(q); }
+    try { if (CONF.endpoint) out = await agentAnswer(q);
+      else {
+        out = await localAnswer(q);
+        const quick = !out.score || out.topic === 'privacy' || out.topic === 'maker';   // greetings, privacy refusals: no need to think
+        if (!quick && await hiveReady()) { try { const a = await hiveAnswer(q, out, typing); if (a) out = { text: a, chips: out.chips }; } catch (e) { hiveSeen = 0; } }
+      } }
     catch (e) { out = { text: (await loadKB()).fallback }; }
     if (BRAIN && out.text) out.text = BRAIN.scrub(out.text);
     typing.remove(); if (!out.shown) add('ai', '', linkify(out.text)); history.push({ role: 'assistant', content: out.text });
