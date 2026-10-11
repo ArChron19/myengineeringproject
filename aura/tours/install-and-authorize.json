@@ -1,0 +1,16 @@
+{
+ "title": "Install & authorize selectNsolve",
+ "start": "Start: install & authorize",
+ "note": "For the Google OAuth demo video. Aura runs in a separate window beside the browser, because the add-on (and Aura inside it) can't open until it is authorized. Pause after each step and do it on screen. CONFIRM the scope lines match the scopes on your real consent screen.",
+ "steps": [
+  {"title": "Welcome", "say": "Hi, I'm Aura, the assistant for My Engineering Project. In this video I'll show how selectNsolve Basic is installed from the Google Workspace Marketplace, which permissions it asks for, and exactly how each permission is used."},
+  {"title": "Find the add-on", "say": "First, open a Google Sheet, choose Extensions, then Add-ons, then Get add-ons. Search the Marketplace for selectNsolve and open the selectNsolve Basic listing.", "pause": 2500},
+  {"title": "Install", "say": "Click Install. Google now shows its sign-in and consent screens for selectNsolve.", "pause": 2500},
+  {"title": "App name", "say": "On the consent screen, the app name reads selectNsolve Basic, published by My Engineering Project LLC, with our privacy policy and terms of service linked at the bottom.", "pause": 2500},
+  {"title": "Client ID", "say": "Look at the browser's address bar. It contains our OAuth client ID, the long value ending in apps dot googleusercontent dot com. That identifies this exact app to Google.", "pause": 3000},
+  {"title": "Permission: this spreadsheet", "say": "The first permission lets selectNsolve view and edit only the spreadsheet you have open, never your other files. It needs this to read the math text you select and to write each answer in the cell beside it.", "pause": 2500},
+  {"title": "Permission: sidebars", "say": "The second permission lets selectNsolve show its menu, sidebar and dialogs inside Google Sheets, including me, your guide.", "pause": 2500},
+  {"title": "What we never do", "say": "selectNsolve does not read or store your spreadsheet contents or equations on our servers, and it never opens any file other than the one you're working in.", "pause": 2000},
+  {"title": "Allow", "say": "Click Allow. Installation finishes, and selectNsolve now appears under the Extensions menu. Next, I'll show you its features from inside the sheet."}
+ ]
+}

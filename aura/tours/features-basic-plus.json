@@ -1,0 +1,18 @@
+{
+ "title": "selectNsolve Basic & Basic Plus",
+ "start": "Start the tour",
+ "note": "Runs inside Google Sheets as a floating dialog (AuraGuide.gs). Steps with run call helper functions in AuraGuide.gs to show things in the sheet.",
+ "steps": [
+  {"title": "Welcome", "say": "Welcome to selectNsolve. I'll show you how to solve an equation with plain text, right in this sheet. You can drag me anywhere on the screen."},
+  {"title": "Math text", "say": "selectNsolve reads any cell that contains one equal sign as math text. Let me add a short example to this sheet.", "run": "auraDemoInsert", "args": ["quickstart"], "pause": 1500},
+  {"title": "Constants", "say": "These two cells are constants. g equals nine point eight one, and h equals fifty. A constant is a name, an equal sign, and a number."},
+  {"title": "The variable", "say": "This cell is the unknown. t starts at one, with a minimum of zero and a maximum of ten. The greater-than and less-than signs set the search bounds."},
+  {"title": "The equation", "say": "This is the equation: h equals one half g t squared. The bar and the number after it set the precision, from zero to one."},
+  {"title": "Select and solve", "say": "Now select all four cells, open Extensions, choose selectNsolve, and run the solver.", "run": "auraSelect", "args": ["A2:A5"], "pause": 2500},
+  {"title": "The answer", "say": "The answer appears in the cell to the right of the variable: t is about three point one nine seconds. No formulas, no programming."},
+  {"title": "Basic Plus", "say": "selectNsolve Basic Plus goes further. Instead of only the cells you select, it finds equations and variables in every tab of your workbook.", "run": "auraDemoInsert", "args": ["multitab"], "pause": 1500},
+  {"title": "Hidden tabs", "say": "If you choose, it also includes hidden tabs, so working notes can stay out of sight while still being solved."},
+  {"title": "Pricing", "say": "Basic is free forever. Basic Plus is one ninety-nine a month or fifteen dollars a year."},
+  {"title": "Help", "say": "For help, open the user manual at my engineering project dot com, or email support at my engineering project dot com. Thanks for watching!"}
+ ]
+}

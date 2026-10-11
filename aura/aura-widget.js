@@ -22,7 +22,7 @@
   const BASE = SCRIPT.src ? SCRIPT.src.replace(/[^/]*$/, '') : '';
   const CONF = Object.assign({
     name: DS.name || 'Aura', knowledge: DS.knowledge || '', hiveUrl: DS.hiveUrl != null ? DS.hiveUrl : 'https://apdnwfmovrrvjmvwfrhk.supabase.co', hiveKey: DS.hiveKey || 'sb_publishable_S7rXC3heK1bXbyPnaveuJA_wMD5_W85', hiveWait: +(DS.hiveWait || 25), sources: (DS.sources || 'https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/source.md,https://raw.githubusercontent.com/ArChron19/myengineeringproject/aura/aura/manual.md').split(',').map(x => x.trim()).filter(Boolean), endpoint: DS.endpoint || '', position: DS.position || 'right',
-    greetAfter: DS.greetAfter != null ? +DS.greetAfter : 8, startOpen: DS.open === 'true', accent: DS.accent || '#4fb3d9'
+    greetAfter: DS.greetAfter != null ? +DS.greetAfter : 8, mode: DS.mode || 'chat', tour: DS.tour || '', autoNext: DS.autoNext !== 'false', startOpen: DS.open === 'true', accent: DS.accent || '#4fb3d9'
   }, window.AURA_CONFIG || {});
 
   // Aura engine v5 \u2014 13 key images of Aura (left profile -> front -> right profile) stitched live with two-way optical flow; \u2014 one photo, one GPU pass. Head/breath idle motion, eye darts + blinks,
@@ -121,10 +121,10 @@ in vec2 p; out vec2 uv; void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5); gl_Position=ve
     if(!('speechSynthesis' in window)){fallback(text);onStatus&&onStatus('No browser voice here, so the mouth runs on estimated timing without sound.');return;}
     const u=new SpeechSynthesisUtterance(text);const fv=femaleVoice();if(fv)u.voice=fv;u.pitch=fv&&!/google/i.test(fv.name)?1.05:1.12;if(voiceOpts){if(voiceOpts.voice)u.voice=voiceOpts.voice;if(voiceOpts.rate)u.rate=voiceOpts.rate;if(voiceOpts.pitch)u.pitch=voiceOpts.pitch;}
     let got=false;
-    u.onboundary=e=>{if(e.name&&e.name!=='word')return;got=true;const rest=text.slice(e.charIndex);const m=rest.match(/^\s*([A-Za-z']+)([^A-Za-z']*)/);if(!m)return;
+    u.onboundary=e=>{if(e.name&&e.name!=='word')return;got=true;if(voiceOpts&&voiceOpts.onWord)try{voiceOpts.onWord(e.charIndex);}catch(_){}const rest=text.slice(e.charIndex);const m=rest.match(/^\s*([A-Za-z']+)([^A-Za-z']*)/);if(!m)return;
       const now=performance.now();Q=Q.filter(q=>q.t<now+10);queueWord(m[1],now,Math.max(130,m[1].length*MSCHAR/(u.rate||1)),/[.,!?;:]/.test(m[2]));nodKick=Math.max(nodKick,.6);};
     u.onstart=()=>{S.speaking=true;setTimeout(()=>{if(!got)fallback(text);},400);};
-    u.onend=()=>{S.speaking=false;Q.push({t:performance.now(),v:'rest'});S.mode='idle';pauseBlink=1;};
+    u.onend=()=>{if(voiceOpts&&voiceOpts.onEnd)try{voiceOpts.onEnd();}catch(_){}S.speaking=false;Q.push({t:performance.now(),v:'rest'});S.mode='idle';pauseBlink=1;};
     let started=false;const os=u.onstart;u.onstart=()=>{started=true;os();};u.onerror=()=>{if(!got)fallback(text);};speechSynthesis.speak(u);setTimeout(()=>{if(!started&&!got&&S.mode==='voice')fallback(text);},800);onStatus&&onStatus('Speaking.');}
   // ---------- live audio -> formants (LPC) -> muscles ----------
   let td=null,fd=null,F1=500,F2=1500,f1h=[500,500,500],f2h=[1500,1500,1500],floor=-60,peakDb=-20,quiet=1,voicedAgo=9,prevE=0;const lev={L:0,F1:0,F2:0,fric:0,voiced:false};
@@ -338,6 +338,14 @@ in vec2 p; out vec2 uv; void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5); gl_Position=ve
   .bubble .nudge{max-width:220px;line-height:1.35}
   .bench{position:absolute;left:6px;top:6px;font:11px ui-monospace,monospace;background:rgba(0,0,0,.55);color:#bfe9ff;padding:4px 6px;border-radius:6px;white-space:pre}
   .typing{opacity:.7;font-style:italic}
+  .cap{flex:1 1 auto;overflow-y:auto;padding:14px 14px 6px;font-size:16px;line-height:1.5;color:#e8edf4}
+  .cap .t{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8fa3ba;margin-bottom:6px}
+  .cap .w{color:#6f8196;transition:color .12s} .cap .w.on{color:#e8edf4} .cap .w.now{color:${CONF.accent}}
+  .ctl{display:flex;align-items:center;gap:6px;padding:8px 10px;border-top:1px solid #263142;background:#121924}
+  .ctl .n{flex:1;text-align:center;font:12px ui-monospace,monospace;color:#8fa3ba}
+  .start{position:absolute;inset:0;display:grid;place-items:center;background:rgba(8,12,18,.55);border:0;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+  .start[hidden],.cap[hidden],.ctl[hidden]{display:none}
+  :host(.guide) .panel{width:100vw;height:100vh;border-radius:0;border:0}
   button:focus-visible,.chip:focus-visible{outline:2px solid ${CONF.accent};outline-offset:2px}
 </style>
 <div class="bubble" role="button" tabindex="0" aria-label="Open chat with ${CONF.name}"><img alt=""><span class="nudge">Chat with ${CONF.name}</span></div>
@@ -345,7 +353,10 @@ in vec2 p; out vec2 uv; void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5); gl_Position=ve
   <header><b><span class="dot" aria-hidden="true"></span>${CONF.name}</b>
     <button class="ib snd" aria-pressed="true" title="Voice on/off" aria-label="Voice on or off">\ud83d\udd0a</button>
     <button class="ib min" title="Minimize" aria-label="Minimize">\u2014</button></header>
-  <div class="stage"><canvas aria-label="${CONF.name}, animated assistant"></canvas></div>
+  <div class="stage"><canvas aria-label="${CONF.name}, animated assistant"></canvas><button class="start" hidden>\u25b6 Start the guide</button></div>
+  <div class="cap" hidden aria-live="polite"></div>
+  <div class="ctl" hidden><button class="ib gb" title="Back" aria-label="Back">\u25c0</button><button class="ib gp" title="Play or pause" aria-label="Play or pause">\u25b6</button>
+    <button class="ib gn" title="Next" aria-label="Next">\u25b6\u25b6</button><span class="n"></span><button class="ib gs" aria-pressed="true" title="Voice on/off" aria-label="Voice on or off">\ud83d\udd0a</button></div>
   <div class="log" role="log" aria-live="polite"></div>
   <div class="chips"></div>
   <form><input type="text" placeholder="Ask ${CONF.name} anything\u2026" aria-label="Message"><button class="send" type="submit">Send</button></form>
@@ -619,11 +630,60 @@ if (false && typeof module !== 'undefined') module.exports = AuraBrain;
   }
   root.querySelector('form').addEventListener('submit', e => { e.preventDefault(); userActed = true; send(input.value); });
 
+  // ---------------------------------------------------------------- guide mode: floating head + live captions + a scripted tour
+  // <script src=".../aura-widget.js" data-mode="guide" data-tour="tour.json"> or window.AURA_TOUR = {title, steps:[{title, say, run, args, pause}]}
+  // A step's `run` calls google.script.run[run](...args) when the page is an Apps Script sidebar/dialog (to show things in the sheet).
+  function guideMode() {
+    host.classList.add('guide'); host.style.cssText = 'position:fixed;inset:0;z-index:2147483000';
+    bubble.hidden = true; ['.log', '.chips', 'form', 'header'].forEach(q => { const el = $(q); if (el) el.hidden = true; el && (el.style.display = 'none'); });
+    $('.cap').hidden = false; $('.ctl').hidden = false; panel.hidden = false; startAvatar();
+    const cap = $('.cap'), num = $('.ctl .n'), playBtn = $('.gp'), startBtn = $('.start');
+    let steps = [], title = '', i = 0, playing = false, timers = [], token = 0;
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+    function render(st) {
+      cap.innerHTML = ''; if (st.title) { const t = document.createElement('div'); t.className = 't'; t.textContent = st.title; cap.appendChild(t); }
+      const p = document.createElement('div'); let at = 0; const spans = [];
+      for (const m of st.say.matchAll(/\S+\s*/g)) { const w = document.createElement('span'); w.className = 'w'; w.textContent = m[0]; w.dataset.at = m.index; p.appendChild(w); spans.push(w); }
+      cap.appendChild(p); num.textContent = `${i + 1} / ${steps.length}`; return spans;
+    }
+    function mark(spans, ci) { let cur = null; for (const w of spans) { const on = +w.dataset.at <= ci; w.classList.toggle('on', on); w.classList.remove('now'); if (on) cur = w; }
+      if (cur) { cur.classList.add('now'); cur.scrollIntoView({ block: 'nearest' }); } }
+    function play(k) {
+      clear(); if (E) E.stop(); i = Math.max(0, Math.min(steps.length - 1, k)); const st = steps[i], me = ++token;
+      const spans = render(st);
+      if (st.run && window.google && google.script && google.script.run) try { google.script.run[st.run](...(st.args || [])); } catch (e) {}
+      if (!playing) { spans.forEach(w => w.classList.add('on')); return; }
+      let heard = false, done = false;
+      const finish = () => { if (done || me !== token) return; done = true; spans.forEach(w => w.classList.add('on'));
+        if (playing && CONF.autoNext && i < steps.length - 1) timers.push(setTimeout(() => me === token && play(i + 1), st.pause || 900));
+        else if (i >= steps.length - 1) { playing = false; playBtn.textContent = '\u25b6'; } };
+      const est = () => {                                        // no word events (or voice off): reveal at speaking pace
+        let t = 0; spans.forEach(w => { timers.push(setTimeout(() => me === token && mark(spans, +w.dataset.at), t)); t += 120 + w.textContent.length * 55; });
+        timers.push(setTimeout(finish, t + 400)); };
+      if (E && voiceOn) { E.smile(.5); E.speak(st.say, () => {}, { onWord: ci => { heard = true; me === token && mark(spans, ci); }, onEnd: finish });
+        timers.push(setTimeout(() => { if (!heard && !done) est(); }, 900)); }
+      else est();
+    }
+    function toggle() { playing = !playing; playBtn.textContent = playing ? '\u23f8' : '\u25b6'; if (playing) { userActed = true; startBtn.hidden = true; play(i); } else { clear(); if (E) E.stop(); } }
+    playBtn.onclick = toggle; startBtn.onclick = toggle;
+    $('.gb').onclick = () => play(i - 1); $('.gn').onclick = () => play(i + 1);
+    $('.gs').onclick = () => { voiceOn = !voiceOn; $('.gs').setAttribute('aria-pressed', voiceOn); $('.gs').textContent = voiceOn ? '\ud83d\udd0a' : '\ud83d\udd08'; if (!voiceOn && E) E.stop(); };
+    (async () => {
+      let tour = window.AURA_TOUR || null;
+      if (!tour && CONF.tour) try { tour = await (await fetch(CONF.tour, { cache: 'no-cache' })).json(); } catch (e) {}
+      steps = (tour && tour.steps || []).filter(s => s && s.say); title = tour && tour.title || '';
+      if (!steps.length) { cap.textContent = 'No guide loaded.'; return; }
+      startBtn.textContent = '\u25b6 ' + (tour.start || 'Start: ' + title); startBtn.hidden = false; render(steps[0]).forEach(w => w.classList.add('on'));
+    })();
+    window.AuraWidget = Object.assign(window.AuraWidget || {}, { tour: { play: k => { playing = true; playBtn.textContent = '\u23f8'; startBtn.hidden = true; play(k || 0); }, next: () => play(i + 1), back: () => play(i - 1), pause: () => playing && toggle() } });
+  }
+
   // ---------------------------------------------------------------- proactive hello for guests
-  let shown = false; try { shown = sessionStorage.getItem('aura-nudged') === '1'; } catch (e) {}
+  if (CONF.mode === 'guide') { if (document.body) guideMode(); else document.addEventListener('DOMContentLoaded', guideMode); }
+  let shown = CONF.mode === 'guide'; try { shown = shown || sessionStorage.getItem('aura-nudged') === '1'; } catch (e) {}
   if (CONF.greetAfter > 0 && !shown) setTimeout(() => { if (!panel.hidden) return; $('.nudge').textContent = `Hi! I'm ${CONF.name}. Need a hand finding anything?`;
     try { sessionStorage.setItem('aura-nudged', '1'); } catch (e) {} }, CONF.greetAfter * 1000);
-  try { if (sessionStorage.getItem('aura-open') === '1' || CONF.startOpen) setTimeout(open, 50); } catch (e) {}
+  try { if (CONF.mode !== 'guide' && (sessionStorage.getItem('aura-open') === '1' || CONF.startOpen)) setTimeout(open, 50); } catch (e) {}
 
   // ---------------------------------------------------------------- benchmark: runs on the visitor's own device
   async function benchmark(seconds) {
@@ -646,6 +706,6 @@ if (false && typeof module !== 'undefined') module.exports = AuraBrain;
   }
   if (/[?&]aura-bench\b/.test(location.search)) setTimeout(() => benchmark(10), 1500);
 
-  window.AuraWidget = { open, minimize, say: t => { userActed = true; open(); add('ai', t); say(t); }, ask: q => { userActed = true; open(); send(q); },
-    pushAudio: (d, r) => { open(); E && E.pushAudio(d, r); }, interrupt: () => E && E.interrupt(), benchmark, engine: () => E, config: CONF };
+  window.AuraWidget = Object.assign(window.AuraWidget || {}, { open, minimize, say: t => { userActed = true; open(); add('ai', t); say(t); }, ask: q => { userActed = true; open(); send(q); },
+    pushAudio: (d, r) => { open(); E && E.pushAudio(d, r); }, interrupt: () => E && E.interrupt(), benchmark, engine: () => E, config: CONF });
 })();
