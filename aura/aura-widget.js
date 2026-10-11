@@ -111,9 +111,15 @@ in vec2 p; out vec2 uv; void main(){uv=vec2(p.x*.5+.5,.5-p.y*.5); gl_Position=ve
   function stop(){if('speechSynthesis' in window)speechSynthesis.cancel();if(aEl){try{aEl.pause();}catch(e){}aEl=null;}streamCut();
     if(tabStream){tabStream.getTracks().forEach(t=>t.stop());tabStream=null;}
     if(srcNode){try{srcNode.disconnect();}catch(e){}srcNode=null;}an=null;Q=[];S.speaking=false;S.mode='idle';setTarget('rest');}
+  // Aura is female: pick the best female English voice on this device (Edge/Windows natural voices first), never a male one.
+  const FEM=/\b(ava|emma|jenny|aria|michelle|libby|sonia|maisie|natasha|clara|zira|hazel|susan|samantha|allison|victoria|karen|moira|tessa|fiona|serena|female|woman|heera|catherine|linda|eva)\b|google us english/i,
+        MALE=/\b(guy|david|mark|george|ryan|daniel|alex|fred|tom|rishi|christopher|eric|roger|steffan|andrew|brian|male|man|thomas|oliver|arthur|aaron|ravi|james|william|liam|connor)\b/i;
+  let fvC=null;function femaleVoice(){if(!('speechSynthesis' in window))return null;if(fvC)return fvC;const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang)&&!MALE.test(v.name));if(!vs.length)return null;
+    const sc=v=>(FEM.test(v.name)?10:0)+(/natural|neural|online/i.test(v.name)?4:0)+(/en[-_]us/i.test(v.lang)?2:0)+(v.localService?0:1);fvC=vs.sort((a,b)=>sc(b)-sc(a))[0];return FEM.test(fvC.name)?fvC:(fvC=null,vs.find(v=>FEM.test(v.name))||null);}
+  if('speechSynthesis' in window){speechSynthesis.getVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener('voiceschanged',()=>{fvC=null;});}
   function speak(text,onStatus,voiceOpts){text=(text||'').trim();if(!text)return;stop();S.mode='voice';
     if(!('speechSynthesis' in window)){fallback(text);onStatus&&onStatus('No browser voice here, so the mouth runs on estimated timing without sound.');return;}
-    const u=new SpeechSynthesisUtterance(text);if(voiceOpts){if(voiceOpts.voice)u.voice=voiceOpts.voice;if(voiceOpts.rate)u.rate=voiceOpts.rate;if(voiceOpts.pitch)u.pitch=voiceOpts.pitch;}
+    const u=new SpeechSynthesisUtterance(text);const fv=femaleVoice();if(fv)u.voice=fv;u.pitch=fv&&!/google/i.test(fv.name)?1.05:1.12;if(voiceOpts){if(voiceOpts.voice)u.voice=voiceOpts.voice;if(voiceOpts.rate)u.rate=voiceOpts.rate;if(voiceOpts.pitch)u.pitch=voiceOpts.pitch;}
     let got=false;
     u.onboundary=e=>{if(e.name&&e.name!=='word')return;got=true;const rest=text.slice(e.charIndex);const m=rest.match(/^\s*([A-Za-z']+)([^A-Za-z']*)/);if(!m)return;
       const now=performance.now();Q=Q.filter(q=>q.t<now+10);queueWord(m[1],now,Math.max(130,m[1].length*MSCHAR/(u.rate||1)),/[.,!?;:]/.test(m[2]));nodKick=Math.max(nodKick,.6);};
