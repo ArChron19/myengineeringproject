@@ -134,7 +134,7 @@ Open brazensudoku.com in any browser. Fill the 9×9 grid so every row, column an
 | Brazen Sudoku | Available, free |
 | selectNsolve Pro | Coming soon |
 | selectNsolve Classroom | Coming soon |
-| selectNsolve Basic Plus | Planned |
+| selectNsolve Basic Plus | Coming soon ($1.99/mo or $15/yr) |
 | selectNsolve for Microsoft Excel | Planned |
 | DXF editor | Planned |
 | PE exam app | Planned |
@@ -143,7 +143,7 @@ Open brazensudoku.com in any browser. Fill the 9×9 grid so every row, column an
 Planned products have no release dates and may change. Their manual chapters will be added here when they launch.
 
 ### selectNsolve Basic Plus
-A paid tier between Basic and Pro. Features and pricing will be announced before launch.
+Everything in Basic, across your whole workbook: it finds equations and variables in every tab, optionally including hidden tabs. $1.99 per month or $15 per year. Coming soon; its full chapter will be added at launch.
 
 ### selectNsolve for Microsoft Excel
 An Excel add-in version of selectNsolve with the same tiers as the Google Sheets version. Sheets you build for Google Sheets will need the Excel version's own syntax guide, which will be added here.
@@ -164,5 +164,6 @@ Email support@myengineeringproject.com, use the Support page form, or ask Aura o
 
 ## Change log
 
+- 2026-10-11: Basic Plus priced at $1.99/month or $15/year (coming soon).
 - 2026-10-11: Added planned products (Basic Plus, Excel add-in, DXF editor, PE exam app, engineering workflow apps).
 - 2026-10-11: First edition of the living manual (selectNsolve Basic, Pro and Classroom previews, Developer API, Brazen Sudoku).

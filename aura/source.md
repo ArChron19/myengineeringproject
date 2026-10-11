@@ -29,7 +29,7 @@ We are based in the St. Petersburg, Florida area and work with customers online 
 keywords: where, located, location, address, office, visit, florida, st. petersburg, tampa bay
 
 ## Products overview
-Available now: selectNsolve Basic (free Google Sheets add-on), the selectNsolve Developer API, and the Brazen Sudoku puzzle game at brazensudoku.com. Coming soon: selectNsolve Pro and selectNsolve Classroom. Planned: selectNsolve Basic Plus, selectNsolve for Microsoft Excel, a DXF drawing editor, a PE exam study and practice app, and engineering workflow apps (a general workflow app and discipline-specific apps, starting with HVAC). Planned products have no release dates yet.
+Available now: selectNsolve Basic (free Google Sheets add-on), the selectNsolve Developer API, and the Brazen Sudoku puzzle game at brazensudoku.com. Coming soon: selectNsolve Basic Plus, selectNsolve Pro and selectNsolve Classroom. Planned: selectNsolve for Microsoft Excel, a DXF drawing editor, a PE exam study and practice app, and engineering workflow apps (a general workflow app and discipline-specific apps, starting with HVAC). Planned products have no release dates yet.
 keywords: products, apps, what do you sell, offerings, catalog, tools, software
 
 ## selectNsolve Basic
@@ -45,11 +45,11 @@ selectNsolve Classroom is an upcoming plan for instructors and institutions. It 
 keywords: classroom, teacher, instructor, school, institution, students, seats, education, discount, nonprofit
 
 ## Pricing
-selectNsolve Basic is free forever with no credit card. selectNsolve Pro will be $7.99 per month or $59 per year. selectNsolve Classroom will be $179 per year, with school and non-profit discounts. Pro and Classroom are coming soon and can't be purchased yet. The Developer API needs no API key.
+selectNsolve Basic is free forever with no credit card. selectNsolve Basic Plus will be $1.99 per month or $15 per year. selectNsolve Pro will be $7.99 per month or $59 per year. selectNsolve Classroom will be $179 per year, with school and non-profit discounts. Basic Plus, Pro and Classroom are coming soon and can't be purchased yet. The Developer API needs no API key.
 keywords: price, pricing, cost, how much, plans, subscription, monthly, yearly, annual, free, pay
 
 ## Buying and launch notifications
-Pro and Classroom aren't available to buy yet, so no payment is taken today. To hear when they launch, use the "Notify Me" button on the Pricing page (it opens the Support page), email support@myengineeringproject.com, or follow @myengproject.
+Basic Plus, Pro and Classroom aren't available to buy yet, so no payment is taken today. To hear when they launch, use the "Notify Me" button on the Pricing page (it opens the Support page), email support@myengineeringproject.com, or follow @myengproject.
 keywords: buy, purchase, checkout, notify, launch, release date, when available, waitlist, coming soon
 
 ## Refunds and billing
@@ -74,7 +74,6 @@ keywords: excel, microsoft, office, add-in, windows, 365, appsource
 
 ## Planned products and roadmap
 These products are planned and not yet available; there are no release dates and plans may change:
-- selectNsolve Basic Plus: a paid tier between Basic and Pro. Details and pricing to come.
 - selectNsolve for Microsoft Excel: an Excel add-in with the same tiers as Google Sheets.
 - DXF editor: a web tool for viewing and editing DXF drawings, including area takeoffs.
 - PE exam app: study guides and practice exams for the Professional Engineering (PE) exam, starting with HVAC and Refrigeration.
@@ -82,8 +81,8 @@ These products are planned and not yet available; there are no release dates and
 To hear about launches, email support@myengineeringproject.com or follow @myengproject.
 keywords: roadmap, planned, upcoming, future, new products, coming, soon, next, plans
 
-## selectNsolve Basic Plus (planned)
-selectNsolve Basic Plus is a planned paid tier between the free Basic tier and Pro. Its features, price and release date haven't been announced yet.
+## selectNsolve Basic Plus (coming soon)
+selectNsolve Basic Plus is the low-cost paid tier between Basic and Pro: everything in Basic, but it finds equations and variables in every tab of your workbook, optionally including hidden tabs, plus email support. It will cost $1.99 per month or $15 per year (save 37%). It is coming soon and can't be purchased yet.
 keywords: basic plus, plus, tier, middle tier, cheaper than pro
 
 ## DXF editor (planned)
