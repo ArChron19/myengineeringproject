@@ -17,6 +17,7 @@ You need a Google account and Google Sheets in a desktop or laptop browser. sele
 
 ### Install selectNsolve Basic
 keywords: install, download, add-on, marketplace, extensions
+
 1. Open the Google Workspace Marketplace and search for selectNsolve.
 2. Choose selectNsolve Basic and click Install, then allow the requested permissions.
 3. Open any Google Sheet; selectNsolve appears under the Extensions menu.
@@ -24,11 +25,12 @@ If you can't find the listing, email support@myengineeringproject.com for the in
 
 ### Your first solve (quick start)
 keywords: getting started, first time, tutorial, how to use, example, run the solver
+
 1. In separate cells, type a constant, a variable and an equation, for example:
-   - `g = 9.81`
-   - `t = 1 > 0 < 10`
-   - `h = 50`
-   - `h = 0.5 * g * t^2 | 0.001`
+    - `g = 9.81`
+    - `t = 1 > 0 < 10`
+    - `h = 50`
+    - `h = 0.5 * g * t^2 | 0.001`
 2. Select all of those cells together.
 3. Open Extensions, then selectNsolve, and run the solver.
 4. The solved value of the variable appears in the cell to the right of the variable (here t ≈ 3.19).
@@ -71,6 +73,7 @@ selectNsolve Basic does not track or convert units. Make sure inputs use consist
 
 ### Worked example: Colebrook-White friction factor
 The Colebrook-White equation for the Darcy friction factor cannot be solved explicitly, which makes it a good fit for selectNsolve:
+
 - `ε = 0.000045`
 - `D = 0.1`
 - `Re = 100000`
@@ -81,6 +84,7 @@ Select all six cells and run the solver; f appears to the right of the variable 
 
 ### Troubleshooting selectNsolve Basic
 keywords: no solution, not working, error, wrong answer, nothing happens, help, fix, broken
+
 - **Nothing happens:** make sure every math cell contains exactly one `=` and that the equation, its variable and its constants are all selected together.
 - **A side is just a number:** each side of an equation must contain a Name; wrap numbers in parentheses, e.g. `(5) * z`.
 - **No solution found:** widen the variable's minimum and maximum, or lower the precision value.
@@ -126,4 +130,5 @@ Open brazensudoku.com in any browser. Fill the 9×9 grid so every row, column an
 Email support@myengineeringproject.com, use the Support page form, or ask Aura on any page of the website. To talk to a person, call or text (656) 200-7296.
 
 ## Change log
+
 - 2026-10-11: First edition of the living manual (selectNsolve Basic, Pro and Classroom previews, Developer API, Brazen Sudoku).
