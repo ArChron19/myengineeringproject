@@ -29,7 +29,7 @@ We are based in the St. Petersburg, Florida area and work with customers online 
 keywords: where, located, location, address, office, visit, florida, st. petersburg, tampa bay
 
 ## Products overview
-Our products are selectNsolve Basic (a free Google Sheets add-on, available now), selectNsolve Pro and selectNsolve Classroom (coming soon), the selectNsolve Developer API (live), and the Brazen Sudoku puzzle game at brazensudoku.com. A Microsoft Excel version of selectNsolve and more engineering tools are in development.
+Available now: selectNsolve Basic (free Google Sheets add-on), the selectNsolve Developer API, and the Brazen Sudoku puzzle game at brazensudoku.com. Coming soon: selectNsolve Pro and selectNsolve Classroom. Planned: selectNsolve Basic Plus, selectNsolve for Microsoft Excel, a DXF drawing editor, a PE exam study and practice app, and engineering workflow apps (a general workflow app and discipline-specific apps, starting with HVAC). Planned products have no release dates yet.
 keywords: products, apps, what do you sell, offerings, catalog, tools, software
 
 ## selectNsolve Basic
@@ -69,8 +69,34 @@ Brazen Sudoku is our free online Sudoku puzzle game, playable in any browser at 
 keywords: sudoku, game, puzzle, brazen, play
 
 ## Microsoft Excel version
-A Microsoft Excel add-in version of selectNsolve is planned. There is no release date yet; follow @myengproject or email support@myengineeringproject.com to be notified.
-keywords: excel, microsoft, office, add-in, windows, 365
+selectNsolve for Microsoft Excel is planned as an Excel add-in, with Basic, Basic Plus, Pro and Classroom tiers to match the Google Sheets version. There is no release date yet; follow @myengproject or email support@myengineeringproject.com to be notified.
+keywords: excel, microsoft, office, add-in, windows, 365, appsource
+
+## Planned products and roadmap
+These products are planned and not yet available; there are no release dates and plans may change:
+- selectNsolve Basic Plus: a paid tier between Basic and Pro. Details and pricing to come.
+- selectNsolve for Microsoft Excel: an Excel add-in with the same tiers as Google Sheets.
+- DXF editor: a web tool for viewing and editing DXF drawings, including area takeoffs.
+- PE exam app: study guides and practice exams for the Professional Engineering (PE) exam, starting with HVAC and Refrigeration.
+- Engineering workflow apps: a general workflow app and discipline-specific apps for engineering departments, starting with HVAC.
+To hear about launches, email support@myengineeringproject.com or follow @myengproject.
+keywords: roadmap, planned, upcoming, future, new products, coming, soon, next, plans
+
+## selectNsolve Basic Plus (planned)
+selectNsolve Basic Plus is a planned paid tier between the free Basic tier and Pro. Its features, price and release date haven't been announced yet.
+keywords: basic plus, plus, tier, middle tier, cheaper than pro
+
+## DXF editor (planned)
+The DXF editor is a planned web tool for opening, viewing and editing DXF (CAD) drawings, including measuring area takeoffs. It is not available yet and has no release date.
+keywords: dxf, cad, autocad, drawing, takeoff, area takeoff, floor plan, editor, viewer, pdf to cad
+
+## PE exam app (planned)
+The PE exam app is a planned study and practice app for the Professional Engineering (PE) exam, combining study guides and practice questions, starting with the HVAC and Refrigeration exam. It is not available yet; our free Study Guides pages are available now.
+keywords: pe exam, pe, professional engineer, license, hvac and refrigeration, mechanical, study app, practice exam, exam prep, ncees
+
+## Engineering workflow apps (planned)
+Engineering workflow apps are planned tools that organize engineering department work: a general workflow app and discipline-specific apps, starting with HVAC design. They are not available yet and have no release date.
+keywords: workflow, engineering department, hvac design, mep, project management, discipline, firm, team tools
 
 ## Custom work and partnerships
 For custom engineering tools, add-ons, school partnerships or business inquiries, call (656) 200-7296 or email contact@myengineeringproject.com.

@@ -2,7 +2,7 @@
 
 Living manual for every My Engineering Project product. It changes often; the newest version is always the one online.
 
-**Last updated:** 2026-10-11 · **Covers:** selectNsolve Basic 0.0.1, selectNsolve Pro (preview), selectNsolve Classroom (preview), selectNsolve Developer API, Brazen Sudoku
+**Last updated:** 2026-10-11 · **Covers:** selectNsolve Basic 0.0.1, selectNsolve Pro (preview), selectNsolve Classroom (preview), selectNsolve Developer API, Brazen Sudoku, and planned products
 
 <!-- EDITING: change any section below; Aura and the manual page pick it up within about 5 minutes.
      Keep one topic per "##" or "###" heading. Update "Last updated" and add a line to the Change log. -->
@@ -124,11 +124,45 @@ Add `https://myengineeringproject.com/api/mcp` as a remote MCP server in your ag
 ### Playing Brazen Sudoku
 Open brazensudoku.com in any browser. Fill the 9×9 grid so every row, column and 3×3 box contains the digits 1 to 9 once each. Use your browser's "Install app" or "Add to Home screen" option to keep it on your phone or computer.
 
-## 6. Getting help
+## 6. Planned products
+
+### Product status at a glance
+| Product | Status |
+|---|---|
+| selectNsolve Basic (Google Sheets) | Available, free |
+| selectNsolve Developer API | Available |
+| Brazen Sudoku | Available, free |
+| selectNsolve Pro | Coming soon |
+| selectNsolve Classroom | Coming soon |
+| selectNsolve Basic Plus | Planned |
+| selectNsolve for Microsoft Excel | Planned |
+| DXF editor | Planned |
+| PE exam app | Planned |
+| Engineering workflow apps | Planned |
+
+Planned products have no release dates and may change. Their manual chapters will be added here when they launch.
+
+### selectNsolve Basic Plus
+A paid tier between Basic and Pro. Features and pricing will be announced before launch.
+
+### selectNsolve for Microsoft Excel
+An Excel add-in version of selectNsolve with the same tiers as the Google Sheets version. Sheets you build for Google Sheets will need the Excel version's own syntax guide, which will be added here.
+
+### DXF editor
+A web tool for opening, viewing and editing DXF drawings, including area takeoffs.
+
+### PE exam app
+Study guides and practice exams for the Professional Engineering exam, starting with HVAC and Refrigeration.
+
+### Engineering workflow apps
+Tools for engineering departments: a general workflow app and discipline-specific apps, starting with HVAC design.
+
+## 7. Getting help
 
 ### Support channels
 Email support@myengineeringproject.com, use the Support page form, or ask Aura on any page of the website. To talk to a person, call or text (656) 200-7296.
 
 ## Change log
 
+- 2026-10-11: Added planned products (Basic Plus, Excel add-in, DXF editor, PE exam app, engineering workflow apps).
 - 2026-10-11: First edition of the living manual (selectNsolve Basic, Pro and Classroom previews, Developer API, Brazen Sudoku).
